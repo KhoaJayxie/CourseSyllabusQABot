@@ -1,0 +1,28 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Source sample documents
+*.pdf
+*.docx
+
+# Virtual environments
+.venv
+
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Runtime documents and generated processing data
+data/uploads/
+data/rendered/
+data/processed/
+
+# Local databases and reports
+*.sqlite3
+reports/

@@ -1,0 +1,67 @@
+/* ===== Nền tảng ===== */
+:root { color-scheme: dark; }
+
+html, body { height: 100%; }
+body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+
+::selection { background: rgb(255 255 255 / 0.2); }
+
+/* ===== Icon (dùng chung cho mọi <svg><use/></svg>) ===== */
+.icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+/* ===== Cuộn mượt + thanh cuộn mảnh ===== */
+.scroll-area {
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;                         /* Firefox */
+  scrollbar-color: #4a4a4a transparent;
+}
+.scroll-area::-webkit-scrollbar { width: 8px; }  /* Chrome, Safari, Edge */
+.scroll-area::-webkit-scrollbar-track { background: transparent; }
+.scroll-area::-webkit-scrollbar-thumb {
+  background: #3d3d3d;
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+.scroll-area::-webkit-scrollbar-thumb:hover { background: #5a5a5a; background-clip: content-box; }
+
+/* ===== Ô nhập: tự giãn theo nội dung (trình duyệt hỗ trợ field-sizing) ===== */
+.composer-input {
+  field-sizing: content;
+  min-height: 2.5rem;
+  max-height: 12rem;
+  font-size: 16px;            /* >= 16px để iOS không tự phóng to khi focus */
+}
+
+/* ===== Mobile: chừa vùng an toàn (tai thỏ, thanh home) ===== */
+.safe-bottom { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+.safe-top    { padding-top: env(safe-area-inset-top); }
+
+/* ===== Tôn trọng người dùng giảm chuyển động ===== */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-area { scroll-behavior: auto; }
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+/* ===== Con trỏ khi trợ lý đang "gõ" ===== */
+.typing-caret::after {
+  content: '';
+  display: inline-block;
+  width: 0.6em;
+  height: 0.6em;
+  margin-left: 0.25em;
+  vertical-align: baseline;
+  border-radius: 9999px;
+  background: currentColor;
+  animation: caret-pulse 1s ease-in-out infinite;
+}
+@keyframes caret-pulse { 50% { opacity: 0.25; } }
