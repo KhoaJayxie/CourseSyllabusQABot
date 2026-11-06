@@ -18,7 +18,6 @@ from qdrant_client import QdrantClient
 from scripts.test_hybrid_rrf import (
     BM25,
     DEFAULT_COLLECTION,
-    DEFAULT_SOURCE,
     VECTOR_SIZE,
     bm25_text,
     embed_query,
@@ -29,6 +28,7 @@ from scripts.test_hybrid_rrf import (
 logger = logging.getLogger(__name__)
 ROOT = Path(__file__).resolve().parent
 UI_DIRECTORY = ROOT / "UI"
+DEFAULT_SOURCE = ROOT / "data" / "qdrant" / "practical_nlp.unified.chunks.jsonl"
 DENSE_TOP_K = 20
 BM25_TOP_K = 20
 RRF_TOP_K = 10
@@ -132,7 +132,9 @@ class RetrievalRuntime:
             canonical = self.chunks_by_id.get(chunk_id, chunk)
             content = canonical.get("content") or {}
             if canonical.get("chunk_type") == "code":
-                text = content.get("description") or content.get("code") or ""
+                description = str(content.get("description") or "").strip()
+                source_code = str(content.get("code") or "").strip()
+                text = f"{description}\\n\\nCode nguyên văn:\\n{source_code}" if source_code else description
             elif canonical.get("chunk_type") == "table":
                 text = content.get("caption") or ""
                 rows = content.get("rows") or []

@@ -12,7 +12,7 @@ DATA = ROOT / "data" / "processed"
 TEXT_PATH = DATA / "practical_nlp.text.chunks.jsonl"
 CODE_PATH = DATA / "practical_nlp.code.chunks.jsonl"
 TABLE_PATH = DATA / "practical_natural_language_processing.tables.json"
-OUTPUT_PATH = DATA / "practical_nlp.unified.chunks.jsonl"
+OUTPUT_PATH = DATA / "qdrant" / "practical_nlp.unified.chunks.jsonl"
 DOC_ID = "practical-natural-language-processing"
 
 
@@ -225,6 +225,7 @@ def main() -> None:
     sys.stdout.reconfigure(errors="backslashreplace")
     records = build()
     validate(records)
+    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     with OUTPUT_PATH.open("w", encoding="utf-8", newline="\n") as out:
         for row in records:
             out.write(json.dumps(row, ensure_ascii=False) + "\n")

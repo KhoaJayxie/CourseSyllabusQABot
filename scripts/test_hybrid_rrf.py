@@ -19,7 +19,7 @@ from google.genai import types
 from qdrant_client import QdrantClient
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_SOURCE = ROOT / "data" / "processed" / "practical_nlp.unified.chunks.jsonl"
+DEFAULT_SOURCE = ROOT / "data" / "qdrant" / "practical_nlp.unified.chunks.jsonl"
 DEFAULT_COLLECTION = "practical_nlp_unified"
 EMBED_MODEL = "gemini-embedding-001"
 RERANK_MODEL = "jina-reranker-v3.5"
