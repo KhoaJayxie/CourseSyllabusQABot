@@ -1,0 +1,568 @@
+[
+  {
+    "chunk_id": "practical-natural-language-processing:table2-1:p97-p97:full",
+    "parent_id": "practical-natural-language-processing:table2-1",
+    "document_id": "practical-natural-language-processing",
+    "type": "table",
+    "table_id": "Table 2-1",
+    "caption": "Table 2-1. Data attributes and associated decision paths",
+    "unit": null,
+    "related_table_ids": [],
+    "page_start": 97,
+    "page_end": 97,
+    "page_inferred": true,
+    "header_type": "column_headers",
+    "columns": [
+      "Data attribute",
+      "Decision path",
+      "Examples"
+    ],
+    "context": "As we've just seen, modeling strategies depend heavily on the data at hand. Table 2-1 provides a range of decision paths given our data volume and quality, based on our experience.",
+    "text": "Table 2-1. Data attributes and associated decision paths\n\nData attribute: Large data volume; Decision path: Can use techniques that require more data, like DL. Can use a richer set of features as well. If the data is sufficiently large but unlabeled, we can also apply unsupervised techniques.; Examples: If we have a lot of reviews and metadata associated with them, we can build a sentiment-analysis tool from scratch.\nData attribute: Small data volume; Decision path: Need to start with rule-based or traditional ML solutions that are less data hungry. Can also adapt cloud APIs and generate more data with weak supervision. We can also use transfer learning if there's a similar task that has large data.; Examples: This often happens at the start of a completely new project.\nData attribute: Data quality is poor and the data is heterogeneous in nature; Decision path: More data cleaning and pre-processing might be required.; Examples: This entails issues like code mixing (different languages being mixed in the same sentence), unconventional language, transliteration, or noise (like social media text).\nData attribute: Data quality is good; Decision path: Can directly apply off-the-shelf algorithms or cloud APIs more easily.; Examples: Legal text or newspapers.\nData attribute: Data consists of full-length documents; Decision path: Choose the right strategy for breaking the document into lower levels, like paragraphs, sentences, or phrases, depending on the problem.; Examples: Document classification, review analysis, etc.",
+    "rows": [
+      {
+        "Data attribute": "Large data volume",
+        "Decision path": "Can use techniques that require more data, like DL. Can use a richer set of features as well. If the data is sufficiently large but unlabeled, we can also apply unsupervised techniques.",
+        "Examples": "If we have a lot of reviews and metadata associated with them, we can build a sentiment-analysis tool from scratch."
+      },
+      {
+        "Data attribute": "Small data volume",
+        "Decision path": "Need to start with rule-based or traditional ML solutions that are less data hungry. Can also adapt cloud APIs and generate more data with weak supervision. We can also use transfer learning if there's a similar task that has large data.",
+        "Examples": "This often happens at the start of a completely new project."
+      },
+      {
+        "Data attribute": "Data quality is poor and the data is heterogeneous in nature",
+        "Decision path": "More data cleaning and pre-processing might be required.",
+        "Examples": "This entails issues like code mixing (different languages being mixed in the same sentence), unconventional language, transliteration, or noise (like social media text)."
+      },
+      {
+        "Data attribute": "Data quality is good",
+        "Decision path": "Can directly apply off-the-shelf algorithms or cloud APIs more easily.",
+        "Examples": "Legal text or newspapers."
+      },
+      {
+        "Data attribute": "Data consists of full-length documents",
+        "Decision path": "Choose the right strategy for breaking the document into lower levels, like paragraphs, sentences, or phrases, depending on the problem.",
+        "Examples": "Document classification, review analysis, etc."
+      }
+    ],
+    "source_line_ids": [],
+    "status": "needs_review",
+    "review_reasons": [
+      "The source text extraction contains a replacement character in the Small data volume decision path (“there's”); the original character is not recoverable from extracted text."
+    ],
+    "notes": []
+  },
+  {
+    "chunk_id": "practical-natural-language-processing:table2-2:p99-p100:full",
+    "parent_id": "practical-natural-language-processing:table2-2",
+    "document_id": "practical-natural-language-processing",
+    "type": "table",
+    "table_id": "Table 2-2",
+    "caption": "Table 2-2. Popular metrics and NLP applications where they're used",
+    "unit": null,
+    "related_table_ids": [],
+    "page_start": 99,
+    "page_end": 100,
+    "page_inferred": true,
+    "header_type": "column_headers",
+    "columns": [
+      "Metric",
+      "Description",
+      "Applications"
+    ],
+    "context": "Table 2-2 lists various metrics used for intrinsic evaluation across various NLP tasks. For a more detailed discussion of the metrics, refer to the corresponding reference.",
+    "text": "Table 2-2. Popular metrics and NLP applications where they're used\n\nMetric: Accuracy [48]; Description: Used when the output variable is categorical or discrete. It denotes the fraction of times the model makes correct predictions as compared to the total predictions it makes.; Applications: Mainly used in classification tasks, such as sentiment classification (multiclass), natural language inference (binary), paraphrase detection (binary), etc.\nMetric: Precision [48]; Description: Shows how precise or exact the model's predictions are, i.e., given all the positive (the class we care about) cases, how many can the model classify correctly?; Applications: Used in various classification tasks, especially in cases where mistakes in a positive class are more costly than mistakes in a negative class, e.g., disease predictions in healthcare.\nMetric: Recall [48]; Description: Recall is complementary to precision. It captures how well the model can recall positive class, i.e., given all the positive predictions it makes, how many of them are indeed positive?; Applications: Used in classification tasks, especially where retrieving positive results is more important, e.g., e-commerce search and other information-retrieval tasks.\nMetric: F1 score [49]; Description: Combines precision and recall to give a single metric, which also captures the trade-off between precision and recall, i.e., completeness and exactness. F1 is defined as (2 × Precision × Recall) / (Precision + Recall).; Applications: Used simultaneously with accuracy in most of the classification tasks. It is also used in sequence-labeling tasks, such as entity extraction, retrieval-based questions answering, etc.\nMetric: AUC [48]; Description: Captures the count of positive predictions that are correct versus the count of positive predictions that are incorrect as we vary the threshold for prediction.; Applications: Used to measure the quality of a model independent of the prediction threshold. It is used to find the optimal prediction threshold for a classification task.\nMetric: MRR (mean reciprocal rank) [50]; Description: Used to evaluate the responses retrieved given their probability of correctness. It is the mean of the reciprocal of the ranks of the retrieved results.; Applications: Used heavily in all information-retrieval tasks, including article search, e-commerce search, etc.\nMetric: MAP (mean average precision) [51]; Description: Used in ranked retrieval results, like MRR. It calculates the mean precision across each retrieved result.; Applications: Used in information-retrieval tasks.\nMetric: RMSE (root mean squared error) [48]; Description: Captures a model's performance in a real-value prediction task. Calculates the square root of the mean of the squared errors for each data point.; Applications: Used in conjunction with MAPE in the case of regression problems, from temperature prediction to stock market price prediction.\nMetric: MAPE (mean absolute percentage error) [52]; Description: Used when the output variable is a continuous variable. It is the average of absolute percentage error for each data point.; Applications: Used to test the performance of a regression model. It is often used in conjunction with RMSE.\nMetric: BLEU (bilingual evaluation understudy) [53]; Description: Captures the amount of n-gram overlap between the output sentence and the reference ground truth sentence. It has many variants.; Applications: Mainly used in machine-translation tasks. Recently adapted to other text-generation tasks, such as paraphrase generation and text summarization.\nMetric: METEOR [54]; Description: A precision-based metric to measure the quality of text generated. It fixes some of the drawbacks of BLEU, such as exact word matching while calculating precision. METEOR allows synonyms and stemmed words to be matched with the reference word.; Applications: Mainly used in machine translation.\nMetric: ROUGE [55]; Description: Another metric to compare quality of generated text with a reference text. As opposed to BLEU, it measures recall.; Applications: Since it measures recall, it's mainly used for summarization tasks where it's important to evaluate how many words a model can recall.\nMetric: Perplexity [56]; Description: A probabilistic measure that captures how confused an NLP model is. It's derived from the cross-entropy in a next-word prediction task. The exact definition can be found at [56].; Applications: Used to evaluate language models. It can also be used in language-generation tasks, such as dialog generation.",
+    "rows": [
+      {
+        "Metric": "Accuracy [48]",
+        "Description": "Used when the output variable is categorical or discrete. It denotes the fraction of times the model makes correct predictions as compared to the total predictions it makes.",
+        "Applications": "Mainly used in classification tasks, such as sentiment classification (multiclass), natural language inference (binary), paraphrase detection (binary), etc."
+      },
+      {
+        "Metric": "Precision [48]",
+        "Description": "Shows how precise or exact the model's predictions are, i.e., given all the positive (the class we care about) cases, how many can the model classify correctly?",
+        "Applications": "Used in various classification tasks, especially in cases where mistakes in a positive class are more costly than mistakes in a negative class, e.g., disease predictions in healthcare."
+      },
+      {
+        "Metric": "Recall [48]",
+        "Description": "Recall is complementary to precision. It captures how well the model can recall positive class, i.e., given all the positive predictions it makes, how many of them are indeed positive?",
+        "Applications": "Used in classification tasks, especially where retrieving positive results is more important, e.g., e-commerce search and other information-retrieval tasks."
+      },
+      {
+        "Metric": "F1 score [49]",
+        "Description": "Combines precision and recall to give a single metric, which also captures the trade-off between precision and recall, i.e., completeness and exactness. F1 is defined as (2 × Precision × Recall) / (Precision + Recall).",
+        "Applications": "Used simultaneously with accuracy in most of the classification tasks. It is also used in sequence-labeling tasks, such as entity extraction, retrieval-based questions answering, etc."
+      },
+      {
+        "Metric": "AUC [48]",
+        "Description": "Captures the count of positive predictions that are correct versus the count of positive predictions that are incorrect as we vary the threshold for prediction.",
+        "Applications": "Used to measure the quality of a model independent of the prediction threshold. It is used to find the optimal prediction threshold for a classification task."
+      },
+      {
+        "Metric": "MRR (mean reciprocal rank) [50]",
+        "Description": "Used to evaluate the responses retrieved given their probability of correctness. It is the mean of the reciprocal of the ranks of the retrieved results.",
+        "Applications": "Used heavily in all information-retrieval tasks, including article search, e-commerce search, etc."
+      },
+      {
+        "Metric": "MAP (mean average precision) [51]",
+        "Description": "Used in ranked retrieval results, like MRR. It calculates the mean precision across each retrieved result.",
+        "Applications": "Used in information-retrieval tasks."
+      },
+      {
+        "Metric": "RMSE (root mean squared error) [48]",
+        "Description": "Captures a model's performance in a real-value prediction task. Calculates the square root of the mean of the squared errors for each data point.",
+        "Applications": "Used in conjunction with MAPE in the case of regression problems, from temperature prediction to stock market price prediction."
+      },
+      {
+        "Metric": "MAPE (mean absolute percentage error) [52]",
+        "Description": "Used when the output variable is a continuous variable. It is the average of absolute percentage error for each data point.",
+        "Applications": "Used to test the performance of a regression model. It is often used in conjunction with RMSE."
+      },
+      {
+        "Metric": "BLEU (bilingual evaluation understudy) [53]",
+        "Description": "Captures the amount of n-gram overlap between the output sentence and the reference ground truth sentence. It has many variants.",
+        "Applications": "Mainly used in machine-translation tasks. Recently adapted to other text-generation tasks, such as paraphrase generation and text summarization."
+      },
+      {
+        "Metric": "METEOR [54]",
+        "Description": "A precision-based metric to measure the quality of text generated. It fixes some of the drawbacks of BLEU, such as exact word matching while calculating precision. METEOR allows synonyms and stemmed words to be matched with the reference word.",
+        "Applications": "Mainly used in machine translation."
+      },
+      {
+        "Metric": "ROUGE [55]",
+        "Description": "Another metric to compare quality of generated text with a reference text. As opposed to BLEU, it measures recall.",
+        "Applications": "Since it measures recall, it's mainly used for summarization tasks where it's important to evaluate how many words a model can recall."
+      },
+      {
+        "Metric": "Perplexity [56]",
+        "Description": "A probabilistic measure that captures how confused an NLP model is. It's derived from the cross-entropy in a next-word prediction task. The exact definition can be found at [56].",
+        "Applications": "Used to evaluate language models. It can also be used in language-generation tasks, such as dialog generation."
+      }
+    ],
+    "source_line_ids": [],
+    "status": "needs_review",
+    "review_reasons": [
+      "Text extraction returned replacement characters in the caption and in the F1 formula; those source symbols cannot be recovered reliably."
+    ],
+    "notes": []
+  },
+  {
+    "chunk_id": "practical-natural-language-processing:table2-3:p103-p103:full",
+    "parent_id": "practical-natural-language-processing:table2-3",
+    "document_id": "practical-natural-language-processing",
+    "type": "table",
+    "table_id": "Table 2-3",
+    "caption": "Table 2-3. Project attribute and associated decision paths",
+    "unit": null,
+    "related_table_ids": [],
+    "page_start": 103,
+    "page_end": 103,
+    "page_inferred": true,
+    "header_type": "column_headers",
+    "columns": [
+      "Project attribute",
+      "Decision paths",
+      "Examples"
+    ],
+    "context": "As a start, Table 2-3 gives some guidance on how to approach the model updating process for different post-deployment scenarios.",
+    "text": "Table 2-3. Project attribute and associated decision paths\n\nProject attribute: More training data is generated post-deployment.; Decision paths: Once deployed, extracted signals can be used to automatically improve the model. Can also try online learning to train the model automatically on a daily basis.; Examples: Abuse-detection systems where users flag data.\nProject attribute: Training data is not generated post-deployment.; Decision paths: Manual labeling could be done to improve evaluation and the models. Ideally, each new model has to be manually built and evaluated.; Examples: A subset of a larger NLP pipeline with no direct feedback.\nProject attribute: Low model latency is required, or model has to be online with near-real-time response.; Decision paths: Need to use models that can be inferred quickly. Another option is to create memoization strategies like caching or have substantially bigger computing power.; Examples: Systems that need to respond right away, like any chatbot or an emergency tracking system.\nProject attribute: Low model latency is not required, or model can be run in an offline fashion.; Decision paths: Can use more advanced and slower models. This can also help in optimizing costs where feasible.; Examples: Systems that can be run on a batch process, like retail product catalog analysis.",
+    "rows": [
+      {
+        "Project attribute": "More training data is generated post-deployment.",
+        "Decision paths": "Once deployed, extracted signals can be used to automatically improve the model. Can also try online learning to train the model automatically on a daily basis.",
+        "Examples": "Abuse-detection systems where users flag data."
+      },
+      {
+        "Project attribute": "Training data is not generated post-deployment.",
+        "Decision paths": "Manual labeling could be done to improve evaluation and the models. Ideally, each new model has to be manually built and evaluated.",
+        "Examples": "A subset of a larger NLP pipeline with no direct feedback."
+      },
+      {
+        "Project attribute": "Low model latency is required, or model has to be online with near-real-time response.",
+        "Decision paths": "Need to use models that can be inferred quickly. Another option is to create memoization strategies like caching or have substantially bigger computing power.",
+        "Examples": "Systems that need to respond right away, like any chatbot or an emergency tracking system."
+      },
+      {
+        "Project attribute": "Low model latency is not required, or model can be run in an offline fashion.",
+        "Decision paths": "Can use more advanced and slower models. This can also help in optimizing costs where feasible.",
+        "Examples": "Systems that can be run on a batch process, like retail product catalog analysis."
+      }
+    ],
+    "source_line_ids": [],
+    "status": "ok",
+    "review_reasons": [],
+    "notes": []
+  },
+  {
+    "chunk_id": "practical-natural-language-processing:table2-4:p104-p104:full",
+    "parent_id": "practical-natural-language-processing:table2-4",
+    "document_id": "practical-natural-language-processing",
+    "type": "table",
+    "table_id": "Table 2-4",
+    "caption": "Table 2-4. Language attribute and action plan",
+    "unit": null,
+    "related_table_ids": [],
+    "page_start": 104,
+    "page_end": 104,
+    "page_inferred": true,
+    "header_type": "column_headers",
+    "columns": [
+      "Language attribute",
+      "Example and languages",
+      "Action"
+    ],
+    "context": "We've compiled some action points for dealing with different languages in Table 2-4, based on our experiences working on projects that involve non-English language processing.",
+    "text": "Table 2-4. Language attribute and action plan\n\nLanguage attribute: High-resource languages; Example and languages: Languages that have both ample data as well as pre-built models. Examples include English, French, and Spanish.; Action: Possible to use pre-trained DL models. Easier to use.\nLanguage attribute: Low-resource languages; Example and languages: Languages that have limited data and recent digital adoption. May not have pre-built models. Examples include Swahili, Burmese, and Uzbek.; Action: Depending on the task, may need to label more data as well as explore individual components.\nLanguage attribute: Morphologically rich; Example and languages: Linguistic and grammatical information like subject, object, predicate, tense, and mode are not separate words, but are joined together. Examples include Latin, Turkish, Finnish, and Malayalam.; Action: If the language is not resource rich, we'll need to explore morphological analyzers that exist for the language. In the worst case, manual rules to handle certain cases might be needed.\nLanguage attribute: Vocabulary variation heavy; Example and languages: Nonstandard spellings and high word variation. For Arabic and Hindi, the spellings are nonstandard.; Action: If the language is not resource rich, then we may need to first normalize the words/spellings before training any model. This may not be needed for languages with large datasets, as they can still learn of vocabulary variation.\nLanguage attribute: CJK languages; Example and languages: These languages are derived from ancient Chinese characters. They're not alphabet based and have several thousand characters for basic literacy and over 40,000 characters for larger coverage. Thus, they have to be handled differently. They include Chinese, Japanese, and Korean, hence the name CJK.; Action: Use specific tokenization schemes in these languages. Given that an ample amount of CJK data is available, it's possible to build NLP models for various tasks from scratch. There are also pre-trained models for them. Transfer learning from models trained in other languages beyond CJK may not be useful in this case.",
+    "rows": [
+      {
+        "Language attribute": "High-resource languages",
+        "Example and languages": "Languages that have both ample data as well as pre-built models. Examples include English, French, and Spanish.",
+        "Action": "Possible to use pre-trained DL models. Easier to use."
+      },
+      {
+        "Language attribute": "Low-resource languages",
+        "Example and languages": "Languages that have limited data and recent digital adoption. May not have pre-built models. Examples include Swahili, Burmese, and Uzbek.",
+        "Action": "Depending on the task, may need to label more data as well as explore individual components."
+      },
+      {
+        "Language attribute": "Morphologically rich",
+        "Example and languages": "Linguistic and grammatical information like subject, object, predicate, tense, and mode are not separate words, but are joined together. Examples include Latin, Turkish, Finnish, and Malayalam.",
+        "Action": "If the language is not resource rich, we'll need to explore morphological analyzers that exist for the language. In the worst case, manual rules to handle certain cases might be needed."
+      },
+      {
+        "Language attribute": "Vocabulary variation heavy",
+        "Example and languages": "Nonstandard spellings and high word variation. For Arabic and Hindi, the spellings are nonstandard.",
+        "Action": "If the language is not resource rich, then we may need to first normalize the words/spellings before training any model. This may not be needed for languages with large datasets, as they can still learn of vocabulary variation."
+      },
+      {
+        "Language attribute": "CJK languages",
+        "Example and languages": "These languages are derived from ancient Chinese characters. They're not alphabet based and have several thousand characters for basic literacy and over 40,000 characters for larger coverage. Thus, they have to be handled differently. They include Chinese, Japanese, and Korean, hence the name CJK.",
+        "Action": "Use specific tokenization schemes in these languages. Given that an ample amount of CJK data is available, it's possible to build NLP models for various tasks from scratch. There are also pre-trained models for them. Transfer learning from models trained in other languages beyond CJK may not be useful in this case."
+      }
+    ],
+    "source_line_ids": [],
+    "status": "needs_review",
+    "review_reasons": [
+      "Several apostrophe characters in table cells and context were returned as replacement characters by text extraction; preserved as extracted and not reconstructed."
+    ],
+    "notes": []
+  },
+  {
+    "chunk_id": "practical-natural-language-processing:table3-1:p115-p115:full",
+    "parent_id": "practical-natural-language-processing:table3-1",
+    "document_id": "practical-natural-language-processing",
+    "type": "table",
+    "table_id": "Table 3-1",
+    "caption": "Table 3-1. Our toy corpus",
+    "unit": null,
+    "related_table_ids": [],
+    "page_start": 115,
+    "page_end": 115,
+    "page_inferred": true,
+    "header_type": "column_headers",
+    "columns": [
+      "Document",
+      "Text"
+    ],
+    "context": "To understand this better, let�s take a toy corpus (shown in Table 3-1) with only four documents—D1, D2, D3, D4—as an example.",
+    "text": "Table 3-1. Our toy corpus\n\nDocument: D1; Text: Dog bites man.\nDocument: D2; Text: Man bites dog.\nDocument: D3; Text: Dog eats meat.\nDocument: D4; Text: Man eats food.",
+    "rows": [
+      {
+        "Document": "D1",
+        "Text": "Dog bites man."
+      },
+      {
+        "Document": "D2",
+        "Text": "Man bites dog."
+      },
+      {
+        "Document": "D3",
+        "Text": "Dog eats meat."
+      },
+      {
+        "Document": "D4",
+        "Text": "Man eats food."
+      }
+    ],
+    "source_line_ids": [],
+    "status": "needs_review",
+    "review_reasons": [
+      "The extracted context contains replacement characters around the document identifiers; the missing punctuation cannot be recovered from text extraction."
+    ],
+    "notes": []
+  },
+  {
+    "chunk_id": "practical-natural-language-processing:table3-2:p121-p121:full",
+    "parent_id": "practical-natural-language-processing:table3-2",
+    "document_id": "practical-natural-language-processing",
+    "type": "table",
+    "table_id": "Table 3-2",
+    "caption": "Table 3-2. TF-IDF values for our toy corpus",
+    "unit": null,
+    "related_table_ids": [],
+    "page_start": 121,
+    "page_end": 121,
+    "page_inferred": true,
+    "header_type": "column_headers",
+    "columns": [
+      "Word",
+      "TF score",
+      "IDF score",
+      "TF-IDF score"
+    ],
+    "context": "Let's compute TF-IDF scores for our toy corpus. Some terms appear in only one document, some appear in two, while others appear in three documents. The size of our corpus is N=4. Hence, corresponding TF-IDF values for each term are shown in Table 3-2.",
+    "text": "Table 3-2. TF-IDF values for our toy corpus\n\nWord: dog; TF score: ⅓ = 0.33; IDF score: log2(4/3) = 0.4114; TF-IDF score: 0.4114 * 0.33 = 0.136\nWord: bites; TF score: ⅙ = 0.17; IDF score: log2(4/2) = 1; TF-IDF score: 1* 0.17 = 0.17\nWord: man; TF score: 0.33; IDF score: log2(4/3) =0.4114; TF-IDF score: 0.4114 * 0.33 = 0.136\nWord: eats; TF score: 0.17; IDF score: log2(4/2) =1; TF-IDF score: 1* 0.17 = 0.17\nWord: meat; TF score: 1/12 = 0.083; IDF score: log2(4/1) =2; TF-IDF score: 2 * 0.083 = 0.17\nWord: food; TF score: 0.083; IDF score: log2(4/1) =2; TF-IDF score: 2 * 0.083 = 0.17",
+    "rows": [
+      {
+        "Word": "dog",
+        "TF score": "⅓ = 0.33",
+        "IDF score": "log2(4/3) = 0.4114",
+        "TF-IDF score": "0.4114 * 0.33 = 0.136"
+      },
+      {
+        "Word": "bites",
+        "TF score": "⅙ = 0.17",
+        "IDF score": "log2(4/2) = 1",
+        "TF-IDF score": "1* 0.17 = 0.17"
+      },
+      {
+        "Word": "man",
+        "TF score": "0.33",
+        "IDF score": "log2(4/3) =0.4114",
+        "TF-IDF score": "0.4114 * 0.33 = 0.136"
+      },
+      {
+        "Word": "eats",
+        "TF score": "0.17",
+        "IDF score": "log2(4/2) =1",
+        "TF-IDF score": "1* 0.17 = 0.17"
+      },
+      {
+        "Word": "meat",
+        "TF score": "1/12 = 0.083",
+        "IDF score": "log2(4/1) =2",
+        "TF-IDF score": "2 * 0.083 = 0.17"
+      },
+      {
+        "Word": "food",
+        "TF score": "0.083",
+        "IDF score": "log2(4/1) =2",
+        "TF-IDF score": "2 * 0.083 = 0.17"
+      }
+    ],
+    "source_line_ids": [],
+    "status": "needs_review",
+    "review_reasons": [
+      "The extracted context and table formulas contain replacement characters for source punctuation/operators; the missing symbols were not inferred."
+    ],
+    "notes": []
+  },
+  {
+    "chunk_id": "practical-natural-language-processing:table4-1:p159-p159:full",
+    "parent_id": "practical-natural-language-processing:table4-1",
+    "document_id": "practical-natural-language-processing",
+    "type": "table",
+    "table_id": "Table 4-1",
+    "caption": "Table 4-1. Potential reasons for poor classifier performance",
+    "unit": null,
+    "related_table_ids": [],
+    "page_start": 159,
+    "page_end": 159,
+    "page_inferred": true,
+    "header_type": "row_headers_only",
+    "columns": [
+      "row_header",
+      "value"
+    ],
+    "context": "These are summarized in Table 4-1, and we'll look into some of them as we progress in this chapter.",
+    "text": "Table 4-1. Potential reasons for poor classifier performance\n\nrow_header: Reason 1; value: Since we extracted all possible features, we ended up in a large, sparse feature vector, where most features are too rare and end up being noise. A sparse feature set also makes training hard.\nrow_header: Reason 2; value: There are very few examples of relevant articles (~20%) compared to the non-relevant articles (~80%) in the dataset. This class imbalance makes the learning process skewed toward the non-relevant articles category, as there are very few examples of “relevant” articles.\nrow_header: Reason 3; value: Perhaps we need a better learning algorithm.\nrow_header: Reason 4; value: Perhaps we need a better pre-processing and feature extraction mechanism.\nrow_header: Reason 5; value: Perhaps we should look to tuning the classifier's parameters and hyperparameters.",
+    "rows": [
+      {
+        "row_header": "Reason 1",
+        "value": "Since we extracted all possible features, we ended up in a large, sparse feature vector, where most features are too rare and end up being noise. A sparse feature set also makes training hard."
+      },
+      {
+        "row_header": "Reason 2",
+        "value": "There are very few examples of relevant articles (~20%) compared to the non-relevant articles (~80%) in the dataset. This class imbalance makes the learning process skewed toward the non-relevant articles category, as there are very few examples of “relevant” articles."
+      },
+      {
+        "row_header": "Reason 3",
+        "value": "Perhaps we need a better learning algorithm."
+      },
+      {
+        "row_header": "Reason 4",
+        "value": "Perhaps we need a better pre-processing and feature extraction mechanism."
+      },
+      {
+        "row_header": "Reason 5",
+        "value": "Perhaps we should look to tuning the classifier's parameters and hyperparameters."
+      }
+    ],
+    "source_line_ids": [],
+    "status": "needs_review",
+    "review_reasons": [
+      "The text extraction contains replacement characters in quoted terms and possessives; preserved as extracted because the original punctuation is unavailable."
+    ],
+    "notes": []
+  },
+  {
+    "chunk_id": "practical-natural-language-processing:table6-1:p229-p229:full",
+    "parent_id": "practical-natural-language-processing:table6-1",
+    "document_id": "practical-natural-language-processing",
+    "type": "table",
+    "table_id": "Table 6-1",
+    "caption": "Table 6-1. Amazon ML FAQ to be used for a FAQ bot [3]",
+    "unit": null,
+    "related_table_ids": [],
+    "page_start": 229,
+    "page_end": 229,
+    "page_inferred": true,
+    "header_type": "column_headers",
+    "columns": [
+      "Questions",
+      "Answer"
+    ],
+    "context": "As an example, we'll consider a subset of Amazon Machine Learning Frequently Asked Questions. A machine needs to learn to provide the correct answer given similar questions, so it's a good idea to have some paraphrases of each question. See Table 6-1 for some input-output examples for such a chatbot.",
+    "text": "Table 6-1. Amazon ML FAQ to be used for a FAQ bot [3]\n\nQuestions: What can I do with Amazon Machine Learning?; Answer: You can use Amazon Machine Learning to create a wide variety of predictive applications. For example, you can use Amazon Machine Learning to help you build applications that flag suspicious transactions, detect fraudulent orders, forecast demand, etc.\nQuestions: How can I use Amazon Machine Learning?; Answer: You can use Amazon Machine Learning to create a wide variety of predictive applications. For example, you can use Amazon Machine Learning to help you build applications that flag suspicious transactions, detect fraudulent orders, forecast demand, etc.\nQuestions: What can Amazon Machine Learning do?; Answer: You can use Amazon Machine Learning to create a wide variety of predictive applications. For example, you can use Amazon Machine Learning to help you build applications that flag suspicious transactions, detect fraudulent orders, forecast demand, etc.\nQuestions: What algorithm does Amazon Machine Learning use to generate models? How does Amazon Machine Learning build models?; Answer: Amazon Machine Learning currently uses an industry-standard logistic regression algorithm to generate models.\nQuestions: Are there limits to the size of the dataset I can use for training?; Answer: Amazon Machine Learning can train models on datasets up to 100 GB in size.\nQuestions: What is the maximum size of training dataset?; Answer: Amazon Machine Learning can train models on datasets up to 100 GB in size.",
+    "rows": [
+      {
+        "Questions": "What can I do with Amazon Machine Learning?",
+        "Answer": "You can use Amazon Machine Learning to create a wide variety of predictive applications. For example, you can use Amazon Machine Learning to help you build applications that flag suspicious transactions, detect fraudulent orders, forecast demand, etc."
+      },
+      {
+        "Questions": "How can I use Amazon Machine Learning?",
+        "Answer": "You can use Amazon Machine Learning to create a wide variety of predictive applications. For example, you can use Amazon Machine Learning to help you build applications that flag suspicious transactions, detect fraudulent orders, forecast demand, etc."
+      },
+      {
+        "Questions": "What can Amazon Machine Learning do?",
+        "Answer": "You can use Amazon Machine Learning to create a wide variety of predictive applications. For example, you can use Amazon Machine Learning to help you build applications that flag suspicious transactions, detect fraudulent orders, forecast demand, etc."
+      },
+      {
+        "Questions": "What algorithm does Amazon Machine Learning use to generate models? How does Amazon Machine Learning build models?",
+        "Answer": "Amazon Machine Learning currently uses an industry-standard logistic regression algorithm to generate models."
+      },
+      {
+        "Questions": "Are there limits to the size of the dataset I can use for training?",
+        "Answer": "Amazon Machine Learning can train models on datasets up to 100 GB in size."
+      },
+      {
+        "Questions": "What is the maximum size of training dataset?",
+        "Answer": "Amazon Machine Learning can train models on datasets up to 100 GB in size."
+      }
+    ],
+    "source_line_ids": [],
+    "status": "needs_review",
+    "review_reasons": [
+      "Answer cells are merged across paraphrased question rows; the shared answer text is repeated for each question, as required by the schema.",
+      "The extracted context contains replacement characters in apostrophes; those source characters cannot be recovered from text extraction."
+    ],
+    "notes": []
+  },
+  {
+    "chunk_id": "practical-natural-language-processing:table6-2:p250-p250:full",
+    "parent_id": "practical-natural-language-processing:table6-2",
+    "document_id": "practical-natural-language-processing",
+    "type": "table",
+    "table_id": "Table 6-2",
+    "caption": "Table 6-2. Goal-oriented datasets from various domains and their usage",
+    "unit": null,
+    "related_table_ids": [],
+    "page_start": 250,
+    "page_end": 250,
+    "page_inferred": true,
+    "header_type": "column_headers",
+    "columns": [
+      "Dataset",
+      "Domain",
+      "Usage"
+    ],
+    "context": "Table 6-2 is a brief summary of various datasets that are used for benchmarking algorithms for goal-oriented dialog tasks. As we're interested in various NLU tasks in dialogs, we present four datasets for goal-oriented dialogs that act as benchmarks for dialog-based NLU tasks.",
+    "text": "Table 6-2. Goal-oriented datasets from various domains and their usage\n\nDataset: ATIS [13]; Domain: Air Ticket Booking; Usage: Benchmark for intent classification and slot filling. This is a single-domain dataset, hence entities and intents are restricted to one domain.\nDataset: SNIPS [14]; Domain: Multidomain; Usage: Benchmark for intent classification and slot filling. This is a multidomain dataset, hence the entities belong to multiple domains. Multiple-domain datasets are challenging to model due their variability.\nDataset: DSTC [15]; Domain: Restaurants; Usage: Benchmark for dialog state tracking or joint determination of intent and slots. This is similarly a single-domain dataset, but the entities are expressed more in terms of annotations and contain more metadata.\nDataset: MultiWoZ [16]; Domain: Multidomain; Usage: Benchmark for dialog state tracking or joint determination of intent and slots that spans over multiple domains. For the similar reason of variability, modeling this dataset is more challenging than modeling single-domain ones.",
+    "rows": [
+      {
+        "Dataset": "ATIS [13]",
+        "Domain": "Air Ticket Booking",
+        "Usage": "Benchmark for intent classification and slot filling. This is a single-domain dataset, hence entities and intents are restricted to one domain."
+      },
+      {
+        "Dataset": "SNIPS [14]",
+        "Domain": "Multidomain",
+        "Usage": "Benchmark for intent classification and slot filling. This is a multidomain dataset, hence the entities belong to multiple domains. Multiple-domain datasets are challenging to model due their variability."
+      },
+      {
+        "Dataset": "DSTC [15]",
+        "Domain": "Restaurants",
+        "Usage": "Benchmark for dialog state tracking or joint determination of intent and slots. This is similarly a single-domain dataset, but the entities are expressed more in terms of annotations and contain more metadata."
+      },
+      {
+        "Dataset": "MultiWoZ [16]",
+        "Domain": "Multidomain",
+        "Usage": "Benchmark for dialog state tracking or joint determination of intent and slots that spans over multiple domains. For the similar reason of variability, modeling this dataset is more challenging than modeling single-domain ones."
+      }
+    ],
+    "source_line_ids": [],
+    "status": "needs_review",
+    "review_reasons": [
+      "The extracted context contains a replacement character in an apostrophe; the original source character is not recoverable from text extraction."
+    ],
+    "notes": []
+  },
+  {
+    "chunk_id": "practical-natural-language-processing:table7-1:p271-p271:full",
+    "parent_id": "practical-natural-language-processing:table7-1",
+    "document_id": "practical-natural-language-processing",
+    "type": "table",
+    "table_id": "Table 7-1",
+    "caption": "Table 7-1. List of the topics covered in this chapter",
+    "unit": null,
+    "related_table_ids": [],
+    "page_start": 271,
+    "page_end": 271,
+    "page_inferred": true,
+    "header_type": "column_headers",
+    "columns": [
+      "NLP task",
+      "Use",
+      "Nature of data"
+    ],
+    "context": null,
+    "text": "Table 7-1. List of the topics covered in this chapter\n\nNLP task: Search; Use: Find relevant content for a given user query.; Nature of data: World wide web/large collection of documents\nNLP task: Topic modeling; Use: Find topics and hidden patterns in a set of documents.; Nature of data: Large collection of documents\nNLP task: Text summarization; Use: Create a shorter version of the text with the most important content; Nature of data: Typically a single document\nNLP task: Recommendations; Use: Showing related articles; Nature of data: Large collection of documents\nNLP task: Machine translation; Use: Translate from one language to another; Nature of data: A single document\nNLP task: Question answering system; Use: Get answers to queries directly instead of a set of documents.; Nature of data: A single document or a large collection of documents",
+    "rows": [
+      {
+        "NLP task": "Search",
+        "Use": "Find relevant content for a given user query.",
+        "Nature of data": "World wide web/large collection of documents"
+      },
+      {
+        "NLP task": "Topic modeling",
+        "Use": "Find topics and hidden patterns in a set of documents.",
+        "Nature of data": "Large collection of documents"
+      },
+      {
+        "NLP task": "Text summarization",
+        "Use": "Create a shorter version of the text with the most important content",
+        "Nature of data": "Typically a single document"
+      },
+      {
+        "NLP task": "Recommendations",
+        "Use": "Showing related articles",
+        "Nature of data": "Large collection of documents"
+      },
+      {
+        "NLP task": "Machine translation",
+        "Use": "Translate from one language to another",
+        "Nature of data": "A single document"
+      },
+      {
+        "NLP task": "Question answering system",
+        "Use": "Get answers to queries directly instead of a set of documents.",
+        "Nature of data": "A single document or a large collection of documents"
+      }
+    ],
+    "source_line_ids": [],
+    "status": "ok",
+    "review_reasons": [],
+    "notes": []
+  }
+]
