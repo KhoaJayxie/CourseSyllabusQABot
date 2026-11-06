@@ -19,9 +19,7 @@ wheels/
 !.env.example
 
 # Runtime documents and generated processing data
-data/uploads/
-data/rendered/
-data/processed/
+
 
 # Local databases and reports
 *.sqlite3
