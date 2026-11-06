@@ -1,0 +1,1053 @@
+[
+  {
+    "id": "practical-natural-language-processing.pdf::beautiful_soup_question_answer",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "beautiful_soup_question_answer",
+    "step": 1,
+    "page": 74,
+    "start_line": 15,
+    "end_line": 26,
+    "depends_on": [
+      "BeautifulSoup",
+      "urlopen",
+      "myurl"
+    ],
+    "description": "Tải trang Stack Overflow rồi trích xuất và in nội dung câu hỏi cùng câu trả lời tốt nhất bằng Beautiful Soup; URL mẫu có thể lỗi hoặc đã đổi.",
+    "text": "from bs4 import BeautifulSoup\nfrom urllib.request import urlopen\nmyurl = \"https://stackoverflow.com/questions/415511/ \\\n  how-to-get-the-current-time-in-python\"\nhtml = urlopen(myurl).read()\nsoupified = BeautifulSoup(html, \"html.parser\")\nquestion = soupified.find(\"div\", {\"class\": \"question\"})\nquestiontext = question.find(\"div\", {\"class\": \"post-text\"})\nprint(\"Question: \\n\", questiontext.get_text().strip())\nanswer = soupified.find(\"div\", {\"class\": \"answer\"})\nanswertext = answer.find(\"div\", {\"class\": \"post-text\"})\nprint(\"Best answer: \\n\", answertext.get_text().strip())"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::datetime_examples",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "datetime_examples",
+    "step": 2,
+    "page": 74,
+    "start_line": 34,
+    "end_line": 46,
+    "depends_on": [
+      "datetime"
+    ],
+    "description": "Minh họa các cách lấy ngày giờ hiện tại bằng datetime; đây là mã ví dụ tương tác, không phải một script hoàn chỉnh.",
+    "text": "# Dòng lệnh và kết quả ví dụ từ tài liệu\n>>> import datetime\n>>> datetime.datetime.now()\ndatetime.datetime(2009, 1, 6, 15, 8, 24, 78915)\n>>> print(datetime.datetime.now())\n2009-01-06 15:08:24.789150\nAnd just the time:\n>>> datetime.datetime.now().time()\ndatetime.time(15, 8, 24, 78915)\n>>> print(datetime.datetime.now().time())\n15:08:24.789150"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::datetime_import_shortcut",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "datetime_import_shortcut",
+    "step": 3,
+    "page": 75,
+    "start_line": 2,
+    "end_line": 2,
+    "depends_on": [
+      "datetime"
+    ],
+    "description": "Minh họa nhập trực tiếp lớp datetime để rút gọn lời gọi; ví dụ độc lập một dòng.",
+    "text": ">>> from datetime import datetime"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::text_encoding_emoji",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "text_encoding_emoji",
+    "step": 4,
+    "page": 76,
+    "start_line": 1,
+    "end_line": 3,
+    "depends_on": [
+      "text"
+    ],
+    "description": "Mã hóa chuỗi UTF-8 để minh họa biểu diễn emoji bằng byte; văn bản gốc có ký tự thiếu do trích xuất PDF.",
+    "text": "text = ’I love         !  Shall we book a          to gizza?’\nText = text.encode(\"utf-8\")\nprint(Text)"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::bing_spellcheck_request",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "bing_spellcheck_request",
+    "step": 5,
+    "page": 76,
+    "start_line": 28,
+    "end_line": 45,
+    "depends_on": [
+      "requests",
+      "json",
+      "endpoint",
+      "api_key"
+    ],
+    "description": "Gửi văn bản tới API spell-check qua HTTP POST rồi in JSON; endpoint và API key là placeholder hoặc phụ thuộc chưa khai báo.",
+    "text": "import requests\nimport json\n\napi_key = \"<ENTER-KEY-HERE>\"\nexample_text = \"Hollo, wrld\" # the text to be spell-checked\n\ndata = {'text': example_text}\nparams = {\n    'mkt':'en-us',\n    'mode':'proof'\n    }\nheaders = {\n    'Content-Type': 'application/x-www-form-urlencoded',\n    'Ocp-Apim-Subscription-Key': api_key,\n    }\nresponse = requests.post(endpoint, headers=headers, params=params, data=data)\njson_response = response.json()\nprint(json.dumps(json_response, indent=4))"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::ocr_extract_text",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "ocr_extract_text",
+    "step": 6,
+    "page": 78,
+    "start_line": 6,
+    "end_line": 10,
+    "depends_on": [
+      "Image",
+      "image_to_string",
+      "filename"
+    ],
+    "description": "Mở ảnh và trích xuất văn bản bằng pytesseract; cần cài đặt Tesseract và cung cấp tệp ảnh hợp lệ.",
+    "text": "from PIL import Image\nfrom pytesseract import image_to_string\nfilename = \"somefile.png\"\ntext = image_to_string(Image.open(filename))\nprint(text)"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::nltk_sentence_word_tokenization",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "nltk_sentence_word_tokenization",
+    "step": 7,
+    "page": 80,
+    "start_line": 20,
+    "end_line": 20,
+    "depends_on": [
+      "sent_tokenize",
+      "word_tokenize",
+      "mytext"
+    ],
+    "description": "Nhập bộ tách câu và từ của NLTK; đây là dòng import nối với ví dụ token hóa ở trang kế tiếp.",
+    "text": "from nltk.tokenize import sent_tokenize, word_tokenize"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::nltk_word_tokenization_loop",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "nltk_word_tokenization_loop",
+    "step": 8,
+    "page": 81,
+    "start_line": 6,
+    "end_line": 8,
+    "depends_on": [
+      "my_sentences",
+      "word_tokenize"
+    ],
+    "description": "Duyệt các câu đã tách, in câu và kết quả word_tokenize; phụ thuộc dữ liệu và import nằm ngoài đoạn mã.",
+    "text": "# (Đoạn này tiếp tục ví dụ token hóa NLTK từ trang trước.)\nfor sentence in my_sentences:\n   print(sentence)\n   print(word_tokenize(sentence))"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::preprocess_corpus_stopwords",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "function",
+    "symbol": "preprocess_corpus_stopwords",
+    "step": 9,
+    "page": 83,
+    "start_line": 13,
+    "end_line": 20,
+    "depends_on": [
+      "stopwords",
+      "punctuation",
+      "word_tokenize"
+    ],
+    "description": "Loại stopword, chữ số và dấu câu rồi chuyển token thành chữ thường; dòng import punctuation viết hoa From trong PDF có thể gây lỗi.",
+    "text": "from nltk.corpus import stopwords\nFrom string import punctuation\ndef preprocess_corpus(texts):\n    mystopwords = set(stopwords.words(\"english\"))\n    def remove_stops_digits(tokens):\n       return [token.lower() for token in tokens if token not in mystopwords                         and\n               not token.isdigit() and token not in punctuation]\n    return [remove_stops_digits(word_tokenize(text)) for text in texts]"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::porter_stemming",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "porter_stemming",
+    "step": 10,
+    "page": 84,
+    "start_line": 1,
+    "end_line": 4,
+    "depends_on": [
+      "PorterStemmer",
+      "word1",
+      "word2"
+    ],
+    "description": "Áp dụng PorterStemmer cho hai từ để minh họa stemming; phần ký tự bao quanh cars và revolution bị lỗi trích xuất.",
+    "text": "from nltk.stem.porter import PorterStemmer\nstemmer = PorterStemmer()\nword1, word2 = “cars”, “revolution”\nprint(stemmer.stem(word1), stemmer.stem(word2))"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::wordnet_lemmatization",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "wordnet_lemmatization",
+    "step": 11,
+    "page": 84,
+    "start_line": 28,
+    "end_line": 30,
+    "depends_on": [
+      "WordNetLemmatizer",
+      "lemmatizer"
+    ],
+    "description": "Lemmatize từ better với nhãn tính từ bằng NLTK; tên lớp WordnetLemmatizer trong tài liệu có thể sai chữ hoa.",
+    "text": "from nltk.stem import WordNetLemmatizer\nlemmatizer = WordnetLemmatizer()\nprint(lemmatizer.lemmatize(\"better\", pos=\"a\")) #a is for adjective"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::spacy_lemma_example",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "spacy_lemma_example",
+    "step": 12,
+    "page": 84,
+    "start_line": 33,
+    "end_line": 37,
+    "depends_on": [
+      "spacy",
+      "sp"
+    ],
+    "description": "Tạo spaCy token cho better rồi in văn bản và lemma; biến sp được gọi trực tiếp như hàm xử lý.",
+    "text": "import spacy\nsp = spacy.load('en_core_web_sm')\ntoken = sp(u'better')\nfor word in token:\n   print(word.text,  word.lemma_)"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::spacy_token_attributes",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "spacy_token_attributes",
+    "step": 13,
+    "page": 87,
+    "start_line": 28,
+    "end_line": 35,
+    "depends_on": [
+      "spacy",
+      "en_core_web_sm"
+    ],
+    "description": "Xử lý câu bằng spaCy và in thuộc tính từng token; literal câu bị ngắt dòng trong PDF và được giữ theo bản trích xuất.",
+    "text": "import spacy\nnlp = spacy.load('en_core_web_sm')\ndoc = nlp(u'Charles Spencer Chaplin was born on 16 April 1889 toHannah Chaplin\n         (born Hannah Harriet\nPedlingham Hill) and Charles Chaplin Sr')\nfor token in doc:\n    print(token.text, token.lemma_, token.pos_,\n          token.shape_, token.is_alpha, token.is_stop)"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::one_hot_vector",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "function",
+    "symbol": "one_hot_vector",
+    "step": 14,
+    "page": 116,
+    "start_line": 9,
+    "end_line": 16,
+    "depends_on": [
+      "vocab"
+    ],
+    "description": "Tạo vector one-hot cho từng token theo từ vựng; phép chia chỉ số dựa trên quy ước ID từ vựng có chỉ số bắt đầu từ một.",
+    "text": "def get_onehot_vector(somestring):\n  onehot_encoded = []\n  for word in somestring.split():\n             temp = [0]*len(vocab)\n             if word in vocab:\n                        temp[vocab[word]-1] = 1\n             onehot_encoded.append(temp)\n  return onehot_encoded"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::count_vectorizer_basic",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "count_vectorizer_basic",
+    "step": 15,
+    "page": 117,
+    "start_line": 34,
+    "end_line": 38,
+    "depends_on": [
+      "CountVectorizer",
+      "processed_docs"
+    ],
+    "description": "Tạo ma trận bag-of-words bằng CountVectorizer; đoạn mã trích dẫn bị ngắt sau bước fit_transform.",
+    "text": "from sklearn.feature_extraction.text import CountVectorizer\ncount_vect = CountVectorizer()\n\n#Build a BOW representation for the corpus\nbow_rep = count_vect.fit_transform(processed_docs)"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::count_vectorizer_binary",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "count_vectorizer_binary",
+    "step": 16,
+    "page": 118,
+    "start_line": 18,
+    "end_line": 20,
+    "depends_on": [
+      "count_vect",
+      "processed_docs"
+    ],
+    "description": "Dùng CountVectorizer ở chế độ nhị phân rồi biến đổi câu mới; count_vect cần được khởi tạo trước đó.",
+    "text": "count_vect = CountVectorizer(binary=True)\nbow_rep_bin = count_vect.fit_transform(processed_docs)\ntemp = count_vect.transform([\"dog and dog are friends\"])"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::count_vectorizer_ngrams",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "count_vectorizer_ngrams",
+    "step": 17,
+    "page": 119,
+    "start_line": 37,
+    "end_line": 40,
+    "depends_on": [
+      "CountVectorizer",
+      "processed_docs"
+    ],
+    "description": "Tạo đặc trưng n-gram từ unigram đến trigram bằng CountVectorizer; dữ liệu đầu vào phải được tiền xử lý trước.",
+    "text": "#n-gram vectorization example with count vectorizer and uni, bi, trigrams\ncount_vect = CountVectorizer(ngram_range=(1,3))\n\n#Build a BOW representation for the corpus\nbow_rep = count_vect.fit_transform(processed_docs)"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::tfidf_vectorization",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "tfidf_vectorization",
+    "step": 18,
+    "page": 121,
+    "start_line": 34,
+    "end_line": 41,
+    "depends_on": [
+      "TfidfVectorizer",
+      "processed_docs"
+    ],
+    "description": "Tính TF-IDF cho corpus và biến đổi một câu mới bằng scikit-learn; API get_feature_names có thể phụ thuộc phiên bản.",
+    "text": "from sklearn.feature_extraction.text import TfidfVectorizer\n\ntfidf = TfidfVectorizer()\nbow_rep_tfidf = tfidf.fit_transform(processed_docs)\nprint(tfidf.idf_) #IDF for all words in the vocabulary\nprint(tfidf.get_feature_names()) #All words in the vocabulary.\n\ntemp = tfidf.transform([\"dog and man are friends\"])\nprint(\"Tfidf representation for 'dog and man are friends':\\n\", temp.toarray())"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::word2vec_pretrained",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "word2vec_pretrained",
+    "step": 19,
+    "page": 126,
+    "start_line": 8,
+    "end_line": 14,
+    "depends_on": [
+      "Word2Vec",
+      "KeyedVectors",
+      "pretrainedpath"
+    ],
+    "description": "Tải vector Word2Vec đã huấn luyện và truy vấn từ gần nghĩa; các biểu thức truy cập vocab có thể không khớp API gensim mới.",
+    "text": "from gensim.models import Word2Vec, KeyedVectors\npretrainedpath = \"NLPBookTut/GoogleNews-vectors-negative300.bin\"\nw2v_model = KeyedVectors.load_word2vec_format(pretrainedpath, binary=True)\nprint('done loading Word2Vec')\nprint(len(w2v_model.vocab)) #Number of words in the vocabulary.\nprint(w2v_model.most_similar['beautiful'])\nW2v_model['beautiful']"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::word2vec_train_example",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "word2vec_train_example",
+    "step": 20,
+    "page": 133,
+    "start_line": 23,
+    "end_line": 32,
+    "depends_on": [
+      "Word2Vec",
+      "common_texts",
+      "our_model"
+    ],
+    "description": "Huấn luyện Word2Vec trên corpus mẫu, lưu model và truy vấn từ tương tự; truy cập vector cuối có thể phụ thuộc phiên bản gensim.",
+    "text": "#Import a test data set provided in gensim to train a model\nfrom gensim.test.utils import common_texts\n#Build the model, by selecting the parameters.\nour_model = Word2Vec(common_texts, size=10, window=5, min_count=1, workers=4)\n#Save the model\nour_model.save(\"tempmodel.w2v\")\n#Inspect the model by looking for the most similar words for a test word.\nprint(our_model.wv.most_similar('computer', topn=5))\n#Let us see what the 10-dimensional vector for 'computer' looks like.\nprint(our_model['computer'])"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::spacy_pretrained_vectors",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "spacy_pretrained_vectors",
+    "step": 21,
+    "page": 134,
+    "start_line": 14,
+    "end_line": 25,
+    "depends_on": [
+      "spacy",
+      "en_core_web_sm"
+    ],
+    "description": "Tải spaCy English model, xử lý câu và in vector trung bình; biến thể model phải được cài đặt trước.",
+    "text": "import spacy\nimport en_core_web_sm\n\n# Load the spacy model. This takes a few seconds.\nnlp = en_core_web_sm.load()\n\n# Process a sentence using the model\ndoc = nlp(\"Canada is a large country\")\n\n#Get a vector for individual words\n#print(doc[0].vector) #vector for 'Canada', the first word in the text\nprint(doc.vector) #Averaged vector for the entire sentence"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::count_vectorizer_training_pipeline",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "count_vectorizer_training_pipeline",
+    "step": 22,
+    "page": 157,
+    "start_line": 25,
+    "end_line": 43,
+    "depends_on": [
+      "our_data",
+      "train_test_split",
+      "CountVectorizer",
+      "clean"
+    ],
+    "description": "Chia dữ liệu train/test và vector hóa với CountVectorizer; phần ví dụ dừng sau fit_transform và phụ thuộc hàm clean bên ngoài.",
+    "text": "#Step 1: train-test split\nX = our_data.text\n#the column text contains textual data to extract features from.\ny = our_data.relevance\n#this is the column we are learning to predict.\nX_train, X_test, y_train, y_test = train_test_split(X, y, random_state=1)\n#split X and y into training and testing sets. By default,\nit splits 75% #training and 25% test. random_state=1 for reproducibility.\n\n#Step 2-3: Pre-process and Vectorize train and test data\nvect = CountVectorizer(preprocessor=clean)\n#clean is a function we defined for pre-processing, seen in the notebook.\nX_train_dtm = vect.fit_transform(X_train)"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::feature_limit_naive_bayes",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "feature_limit_naive_bayes",
+    "step": 23,
+    "page": 159,
+    "start_line": 24,
+    "end_line": 30,
+    "depends_on": [
+      "CountVectorizer",
+      "clean",
+      "X_train",
+      "X_test",
+      "nb",
+      "y_train"
+    ],
+    "description": "Giới hạn CountVectorizer còn 5.000 đặc trưng rồi huấn luyện Naive Bayes và dự đoán; nb cùng các dữ liệu phải được tạo trước.",
+    "text": "vect = CountVectorizer(preprocessor=clean, max_features=5000) #Step-1\nX_train_dtm = vect.fit_transform(X_train)#combined step 2 and 3\nX_test_dtm = vect.transform(X_test)\nnb = MultinomialNB() #instantiate a Multinomial Naive Bayes model\n%time nb.fit(X_train_dtm, y_train)\n#train the model(timing it with an IPython \"magic command\")\ny_pred_class = nb.predict(X_test_dtm)\n#make class predictions for X_test_dtm"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::logistic_regression_classifier",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "logistic_regression_classifier",
+    "step": 24,
+    "page": 161,
+    "start_line": 21,
+    "end_line": 24,
+    "depends_on": [
+      "LogisticRegression",
+      "X_train_dtm",
+      "y_train",
+      "X_test_dtm"
+    ],
+    "description": "Huấn luyện LogisticRegression và dự đoán nhãn cho tập test; các đầu vào ma trận đặc trưng được tạo ở bước trước.",
+    "text": "from sklearn.linear_model import LogisticRegression\nlogreg.fit(X_train_dtm, y_train)\ny_pred_class = logreg.predict(X_test_dtm)"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::linear_svc_classifier",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "linear_svc_classifier",
+    "step": 25,
+    "page": 163,
+    "start_line": 1,
+    "end_line": 7,
+    "depends_on": [
+      "LinearSVC",
+      "CountVectorizer",
+      "clean",
+      "X_train",
+      "X_test",
+      "classifier"
+    ],
+    "description": "Vector hóa văn bản và huấn luyện LinearSVC để dự đoán lớp; tên classifier và dữ liệu được giả định đã khai báo ở ngoài.",
+    "text": "from sklearn.svm import LinearSVC\nvect = CountVectorizer(preprocessor=clean, max_features=1000) #Step-1\nX_train_dtm = vect.fit_transform(X_train)#combined step 2 and 3\nX_test_dtm = vect.transform(X_test)\nclassifier.fit(X_train_dtm, y_train) #fit the model with training data\ny_pred_class = classifier.predict(X_test_dtm)"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::average_embedding_features",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "function",
+    "symbol": "average_embedding_features",
+    "step": 26,
+    "page": 165,
+    "start_line": 9,
+    "end_line": 22,
+    "depends_on": [
+      "np",
+      "w2v_model"
+    ],
+    "description": "Tạo vector đặc trưng bằng cách lấy trung bình embedding của token trong từng câu; có thể chia cho zero khi không token nào có vector.",
+    "text": "# Creating a feature vector by averaging all embeddings for all sentences\ndef embedding_feats(list_of_lists):\n    DIMENSION = 300\n    zero_vector = np.zeros(DIMENSION)\n    feats = []\n    for tokens in list_of_lists:\n          feat_for_this =  np.zeros(DIMENSION)\n          count_for_this = 0\n          for token in tokens:\n                     if token in w2v_model:\n                          feat_for_this += w2v_model[token]\n                          count_for_this +=1\n          feats.append(feat_for_this/count_for_this)\n    return feats"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::tweet_preprocessing",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "function",
+    "symbol": "tweet_preprocessing",
+    "step": 27,
+    "page": 168,
+    "start_line": 30,
+    "end_line": 42,
+    "depends_on": [
+      "TweetTokenizer",
+      "stopwords",
+      "df_subset"
+    ],
+    "description": "Chuẩn hóa tweet bằng TweetTokenizer rồi loại stopword và chữ số; phần thân hàm lồng có thụt lề không nhất quán trong bản in.",
+    "text": "tweeter = TweetTokenizer(strip_handles=True,preserve_case=False)\nmystopwords = set(stopwords.words(\"english\"))\n\n#Function to pre-process and tokenize tweets\ndef preprocess_corpus(texts):\n    def remove_stops_digits(tokens):\n    #Nested function to remove stopwords and digits\n          return [token for token in tokens if token not in mystopwords\n                  and not token.isdigit()]\n    return [remove_stops_digits(tweeter.tokenize(content)) for content in texts]\n\nmydata = preprocess_corpus(df_subset['content'])\nmycats = df_subset['sentiment']"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::doc2vec_train",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "doc2vec_train",
+    "step": 28,
+    "page": 169,
+    "start_line": 13,
+    "end_line": 20,
+    "depends_on": [
+      "TaggedDocument",
+      "Doc2Vec",
+      "train_data"
+    ],
+    "description": "Chuyển tài liệu thành TaggedDocument rồi huấn luyện và lưu Doc2Vec; phạm vi dừng trước bước suy luận vector.",
+    "text": "#Prepare training data in doc2vec format:\nd2vtrain = [TaggedDocument((d),tags=[str(i)]) for i, d in enumerate(train_data)]\n#Train a doc2vec model to learn tweet representations. Use only training data!!\nmodel = Doc2Vec(vector_size=50, alpha=0.025, min_count=10, dm =1, epochs=100)\nmodel.build_vocab(d2vtrain)\nmodel.train(d2vtrain, total_examples=model.corpus_count, epochs=model.epochs)\nmodel.save(\"d2v.model\")\nprint(\"Model Saved\")"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::doc2vec_infer_classifier",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "doc2vec_infer_classifier",
+    "step": 29,
+    "page": 169,
+    "start_line": 41,
+    "end_line": 48,
+    "depends_on": [
+      "Doc2Vec",
+      "train_data",
+      "test_data",
+      "train_cats",
+      "test_cats",
+      "LogisticRegression"
+    ],
+    "description": "Tải model Doc2Vec, suy luận vector cho train/test rồi huấn luyện bộ phân loại; đoạn list comprehension kết thúc ở đầu trang kế.",
+    "text": "#Infer the feature representation for training and test data using\n#the trained model\nmodel= Doc2Vec.load(\"d2v.model\")\n#Infer in multiple steps to get a stable representation\ntrain_vectors =  [model.infer_vector(list_of_tokens, steps=50)\n                   for list_of_tokens in train_data]\ntest_vectors = [model.infer_vector(list_of_tokens, steps=50)\n                  for list_of_tokens in test_data]\nmyclass = LogisticRegression(class_weight=\"balanced\")\n#because classes are not balanced\nmyclass.fit(train_vectors, train_cats)\npreds = myclass.predict(test_vectors)\nprint(classification_report(test_cats, preds))"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::glove_embedding_matrix",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "glove_embedding_matrix",
+    "step": 30,
+    "page": 172,
+    "start_line": 10,
+    "end_line": 41,
+    "depends_on": [
+      "os",
+      "np",
+      "GLOVE_DIR",
+      "MAX_NUM_WORDS",
+      "word_index",
+      "EMBEDDING_DIM",
+      "Embedding",
+      "Constant",
+      "MAX_SEQUENCE_LENGTH"
+    ],
+    "description": "Đọc vector GloVe, tạo embedding matrix và lớp Embedding cố định; kích thước vector phải khớp EMBEDDING_DIM.",
+    "text": "embeddings_index = {}\nwith open(os.path.join(GLOVE_DIR, 'glove.6B.100d.txt')) as f:\n    for line in f:\n          values = line.split()\n          word = values[0]\n          coefs = np.asarray(values[1:], dtype='float32')\n          embeddings_index[word] = coefs\n\nnum_words = min(MAX_NUM_WORDS, len(word_index)) + 1\nembedding_matrix = np.zeros((num_words, EMBEDDING_DIM))\nfor word, i in word_index.items():\n    if i > MAX_NUM_WORDS:\n          continue\n    embedding_vector = embeddings_index.get(word)\n    if embedding_vector is not None:\n          embedding_matrix[i] = embedding_vector\n\nembedding_layer = Embedding(num_words, EMBEDDING_DIM,\n                        embeddings_initializer=Constant(embedding_matrix),\n                        input_length=MAX_SEQUENCE_LENGTH,\n                        trainable=False)\nprint(\"Preparing of embedding matrix is done\")"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::cnn_text_classifier",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "cnn_text_classifier",
+    "step": 31,
+    "page": 173,
+    "start_line": 20,
+    "end_line": 38,
+    "depends_on": [
+      "Sequential",
+      "embedding_layer",
+      "Conv1D",
+      "MaxPooling1D",
+      "GlobalMaxPooling1D",
+      "Dense",
+      "labels_index",
+      "x_train",
+      "y_train",
+      "x_val",
+      "y_val",
+      "test_data",
+      "test_labels"
+    ],
+    "description": "Xây dựng, huấn luyện và đánh giá CNN phân loại văn bản bằng Keras; phần dữ liệu và embedding được tạo bên ngoài.",
+    "text": "print('Define a 1D CNN model.')\ncnnmodel = Sequential()\ncnnmodel.add(embedding_layer)\ncnnmodel.add(Conv1D(128, 5, activation='relu'))\ncnnmodel.add(MaxPooling1D(5))\ncnnmodel.add(Conv1D(128, 5, activation='relu'))\ncnnmodel.add(MaxPooling1D(5))\ncnnmodel.add(Conv1D(128, 5, activation='relu'))\ncnnmodel.add(GlobalMaxPooling1D())\ncnnmodel.add(Dense(128, activation='relu'))\ncnnmodel.add(Dense(len(labels_index), activation='softmax'))\ncnnmodel.compile(loss='categorical_crossentropy',\n                    optimizer='rmsprop',\n                    metrics=['acc'])\ncnnmodel.fit(x_train, y_train,\n          batch_size=128,\n          epochs=1, validation_data=(x_val, y_val))\nscore, acc = cnnmodel.evaluate(test_data, test_labels)\nprint('Test accuracy with CNN:', acc)"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::cnn_rnn_inference_training",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "cnn_rnn_inference_training",
+    "step": 32,
+    "page": 174,
+    "start_line": 9,
+    "end_line": 19,
+    "depends_on": [
+      "Sequential",
+      "Embedding",
+      "MAX_NUM_WORDS",
+      "cnnmodel",
+      "x_train",
+      "y_train",
+      "x_val",
+      "y_val",
+      "test_data",
+      "test_labels"
+    ],
+    "description": "Minh họa CNN với embedding học từ đầu và quá trình fit; một số dòng trong ví dụ được thay bằng dấu ba chấm.",
+    "text": "print(\"Defining and training a CNN model, training embedding layer on the fly\n      instead of using pre-trained embeddings\")\ncnnmodel = Sequential()\ncnnmodel.add(Embedding(MAX_NUM_WORDS, 128))\n…\n...\ncnnmodel.fit(x_train, y_train,\n          batch_size=128,\n          epochs=1, validation_data=(x_val, y_val))\nscore, acc = cnnmodel.evaluate(test_data, test_labels)\nprint('Test accuracy with CNN:', acc)"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::rnn_text_classifier",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "rnn_text_classifier",
+    "step": 33,
+    "page": [
+      174,
+      175
+    ],
+    "start_line": 42,
+    "end_line": 13,
+    "depends_on": [
+      "Sequential",
+      "Embedding",
+      "MAX_NUM_WORDS",
+      "LSTM",
+      "x_train",
+      "y_train",
+      "x_val",
+      "y_val",
+      "test_data",
+      "test_labels"
+    ],
+    "description": "Xây dựng, huấn luyện và đánh giá bộ phân loại LSTM; mã bắt đầu ở trang 174 và tiếp tục ở trang 175.",
+    "text": "# (Tiếp tục qua trang PDF 175.)\nrnnmodel = Sequential()\nrnnmodel.add(Embedding(MAX_NUM_WORDS, 128))\nrnnmodel.add(LSTM(128, dropout=0.2, recurrent_dropout=0.2))\nrnnmodel.add(Dense(2, activation='sigmoid'))\nrnnmodel.compile(loss='binary_crossentropy',\n               optimizer='adam',\n               metrics=['accuracy'])\nprint('Training the RNN')\nrnnmodel.fit(x_train, y_train,\n          batch_size=32,\n          epochs=1,\n          validation_data=(x_val, y_val))\nscore, acc = rnnmodel.evaluate(test_data, test_labels,\n                          batch_size=32)\nprint('Test accuracy with RNN:', acc)"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::lime_text_explanation",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "lime_text_explanation",
+    "step": 34,
+    "page": 178,
+    "start_line": 9,
+    "end_line": 20,
+    "depends_on": [
+      "lime_text",
+      "LimeTextExplainer",
+      "classifier",
+      "X_test_dtm",
+      "vect",
+      "X_test"
+    ],
+    "description": "Giải thích dự đoán văn bản bằng LIME và in các đặc trưng quan trọng; truy cập X_test[221] có thể vượt chỉ số tùy kích thước dữ liệu.",
+    "text": "from lime import lime_text\nfrom lime.lime_text import LimeTextExplainer\nfrom sklearn.pipeline import make_pipeline\n\ny_pred_prob = classifier.predict_proba(X_test_dtm)[:, 1]\nc = make_pipeline(vect, classifier)\nmystring = list(X_test)[221] #Take a string from test instance\nprint(c.predict_proba([mystring])) #Prediction is a \"No\" here, i.e., not relevant\nclass_names = [\"no\", \"yes\"] #not relevant, relevant\nexplainer = LimeTextExplainer(class_names=class_names)\nexp = explainer.explain_instance(mystring, c.predict_proba, num_features=6)\nexp.as_list()"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::textrank_sgrank_keywords",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "textrank_sgrank_keywords",
+    "step": 35,
+    "page": 198,
+    "start_line": 4,
+    "end_line": 15,
+    "depends_on": [
+      "textacy",
+      "mytext",
+      "mydoc"
+    ],
+    "description": "Tính từ khóa bằng TextRank và SGRank với textacy; mã dùng biến mydoc chưa thấy khai báo trong đoạn trích.",
+    "text": "from textacy import *\nimport textacy.ke\n\nmytext = open(“nlphistory.txt”).read()\nen = textacy.load_spacy_lang(\"en_core_web_sm\", disable=(\"parser\",))\ndoc = textacy.make_spacy_doc(mytext, lang=en)\n\nprint(\"Textrank output: \", [kps for kps, weights in\ntextacy.ke.textrank(doc, normalize=\"lemma\",  topn=5)])\n\nprint(\"SGRank output: \", [kps for kps, weights in\ntextacy.ke.sgrank(mydoc, n_keyterms=5)])"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::sent2feats_ner",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "function",
+    "symbol": "sent2feats_ner",
+    "step": 36,
+    "page": 204,
+    "start_line": 11,
+    "end_line": 32,
+    "depends_on": [
+      "pos_tag",
+      "sentence"
+    ],
+    "description": "Tạo đặc trưng POS hiện tại, trước đó và tiếp theo cho từng từ; biến zero_vector không cần thiết trong phiên bản này.",
+    "text": "def sent2feats(sentence):\n    feats = []\n    sen_tags = pos_tag(sentence)\n    for i in range(0,len(sentence)):\n         word = sentence[i]\n         wordfeats = {}\n         #POS tag features: current tag, previous and next 2 tags.\n         wordfeats['tag'] = sen_tags[i][1]\n         if i == 0:\n          wordfeats[\"prevTag\"] = \"<S>\"\n         elif i == 1:\n          wordfeats[\"prevTag\"] = sen_tags[0][1]\n         else:\n          wordfeats[\"prevTag\"] = sen_tags[i - 1][1]\n         if i == len(sentence) - 2:\n          wordfeats[\"nextTag\"] = sen_tags[i + 1][1]\n         elif i == len(sentence) - 1:\n          wordfeats[\"nextTag\"] = \"</S>\"\n         else:\n          wordfeats[\"nextTag\"] = sen_tags[i + 1][1]\n         feats.append(wordfeats)\n    return feats"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::crf_sequence_training",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "function",
+    "symbol": "crf_sequence_training",
+    "step": 37,
+    "page": 204,
+    "start_line": 39,
+    "end_line": 47,
+    "depends_on": [
+      "CRF",
+      "metrics",
+      "X_train",
+      "Y_train",
+      "X_dev",
+      "Y_dev"
+    ],
+    "description": "Huấn luyện CRF, dự đoán trên tập phát triển và in weighted flat F1; code mẫu không trả về model hoặc dự đoán.",
+    "text": "#Train a sequence model\ndef train_seq(X_train,Y_train,X_dev,Y_dev):\n    crf = CRF(algorithm='lbfgs', c1=0.1, c2=10, max_iterations=50)\n    crf.fit(X_train, Y_train)\n    labels = list(crf.classes_)\n    y_pred = crf.predict(X_dev)\n    sorted_labels = sorted(labels, key=lambda name: (name[1:], name[0]))\n    print(metrics.flat_f1_score(Y_dev,y_pred,average='weighted',\n                                labels=labels))"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::spacy_ner_entities",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "spacy_ner_entities",
+    "step": 38,
+    "page": 206,
+    "start_line": 1,
+    "end_line": 8,
+    "depends_on": [
+      "spacy",
+      "text_from_fig"
+    ],
+    "description": "Chạy spaCy NER trên câu và in entity cùng nhãn; câu literal bị ngắt dòng giữa chuỗi trong PDF.",
+    "text": "import spacy\nnlp = spacy.load(\"en_core_web_lg\")\ntext_from_fig = \"On Tuesday, Apple announced its plans for another major chunk\n                 of the money: It will buy back a further $75 billion in stock.\"\ndoc = nlp(text_from_fig)\nfor ent in doc.ents:\n    if ent.text:\n         print(ent.text, \"\\t\", ent.label_)"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::azure_entity_extraction",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "function",
+    "symbol": "azure_entity_extraction",
+    "step": 39,
+    "page": 209,
+    "start_line": 33,
+    "end_line": 42,
+    "depends_on": [
+      "requests",
+      "my_api_key"
+    ],
+    "description": "Gửi văn bản tới Microsoft Text Analytics Entities API rồi trả JSON; API key là placeholder và URL cần kiểm tra vùng dịch vụ.",
+    "text": "import requests\nmy_api_key = 'XXXXXXX'\ndef print_entities(text):\n    url = \"https://westcentralus.api.cognitive.microsoft.com/text/analytics/\\\n    v2.1/entities\"\n    documents = {'documents':[{'id':'1', 'language':'en', 'text':text}]}\n    headers = {'Ocp-Apim-Subscription-Key': my_api_key}\n    response = requests.post(url, headers=headers, json=documents)\n    entities = response.json()\n    return entities"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::print_named_entities",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "print_named_entities",
+    "step": 40,
+    "page": 210,
+    "start_line": 1,
+    "end_line": 9,
+    "depends_on": [
+      "print_entities",
+      "mytext"
+    ],
+    "description": "Gọi print_entities cho văn bản rồi in thực thể người, địa điểm, tổ chức và Wikipedia URL nếu có.",
+    "text": "mytext = open(\"nytarticle.txt\").read() #file is in the github repo.\nentities = print_entities(mytext)\nfor document in entities['documents']:\n    print(\"Entities in this document: \" )\n    for entity in document['entities']:\n         if entity['type'] in [\"Person\", \"Location\", \"Organization\"]:\n                    print(entity['name'], \"\\t\", entity['type'])\n                    if 'wikipediaUrl' in entity.keys():\n                         print(entity['wikipediaUrl'])"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::ibm_relation_extraction",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "ibm_relation_extraction",
+    "step": 41,
+    "page": 214,
+    "start_line": 22,
+    "end_line": 30,
+    "depends_on": [
+      "natural_language_understanding",
+      "Features",
+      "RelationsOptions",
+      "response"
+    ],
+    "description": "Gửi văn bản đến IBM Natural Language Understanding để lấy quan hệ và in loại cùng entity arguments; client và response cần được khởi tạo trước.",
+    "text": "mytext3 = \"\"\"Nadella attended the Hyderabad Public School, Begumpet [12] before\nreceiving a bachelor's in electrical engineering[13] from the Manipal Institute\nof Technology (then part of Mangalore University)in Karnataka in 1988.\"\"\"\nresponse = natural_language_understanding.analyze(text=mytext3,\n            features=Features(relations=RelationsOptions())).get_result()\nfor item in response['relations']:\n         print(item['type'])\n         for subitem in item['arguments']:\n          print(subitem['entities'])"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::elasticsearch_index_books",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "elasticsearch_index_books",
+    "step": 42,
+    "page": 277,
+    "start_line": 26,
+    "end_line": 44,
+    "depends_on": [
+      "es",
+      "path"
+    ],
+    "description": "Đọc tối đa 500 dòng tệp book summaries rồi index chúng trong Elasticsearch và in tổng số; code truy cập es chưa khai báo trong chunk.",
+    "text": "#Build an index from booksummaries dataset, using only 500 documents.\npath = \"../booksummaries/booksummaries.txt\"\ncount = 1\nfor line in open(path):\n    fields = line.split(\"\\t\")\n    doc = {'id' : fields[0],\n          'title': fields[2],\n          'author': fields[3],\n          'summary': fields[6]\n          }\n      #Index is called myindex\n    res = es.index(index=\"myindex\", id=fields[0], body=doc)\n    count = count+1\n    if count%100 == 0:\n          print(\"indexed 100 documents\")\n    if count == 501:\n          break\nres = es.search(index=\"myindex\", body={\"query\": {\"match_all\": {}}})\nprint(\"Your index has %d entries\" % res['hits']['total']['value'])"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::elasticsearch_search_loop",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "elasticsearch_search_loop",
+    "step": 43,
+    "page": 278,
+    "start_line": 8,
+    "end_line": 23,
+    "depends_on": [
+      "es",
+      "myindex"
+    ],
+    "description": "Lặp nhận truy vấn, tìm cụm chính xác trong Elasticsearch và in kết quả/snippet; .index phân biệt hoa thường và loc-100 có thể âm.",
+    "text": "#match query works as a OR query when the query string has multiple words\n#match_phrase looks for exact matches. So using that here.\nwhile True:\n    query = input(\"Enter your search query: \")\n    if query == \"STOP\":\n        break\n    res = es.search(index=\"myindex\", body={\"query\": {\"match_phrase\":\n                                                {\"summary\": query}}})\n    print(\"Your search returned %d results:\"\n                     %res['hits']['total']['value'])\n    for hit in res[\"hits\"][\"hits\"]:\n          print(hit[\"_source\"][\"title\"])\n          #to get a snippet 100 characters before and after the match\n          loc = hit[\"_source\"][\"summary\"].lower().index(query)\n          print(hit[\"_source\"][\"summary\"][:100])\n          print(hit[\"_source\"][\"summary\"][loc-100:loc+100])"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::lda_topic_modeling",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "lda_topic_modeling",
+    "step": 44,
+    "page": 284,
+    "start_line": 12,
+    "end_line": 42,
+    "depends_on": [
+      "word_tokenize",
+      "stopwords",
+      "LdaModel",
+      "Dictionary",
+      "pprint",
+      "data_path"
+    ],
+    "description": "Tiền xử lý book summaries, tạo corpus/dictionary và huấn luyện LDA; đường dẫn dữ liệu là placeholder và có thể tốn bộ nhớ đáng kể.",
+    "text": "from nltk.tokenize import word_tokenize\nfrom nltk.corpus import stopwords\nfrom gensim.models import LdaModel\nfrom gensim.corpora import Dictionary\nfrom pprint import pprint\n\n#tokenize, remove stopwords, non-alphabetic words, lowercase\ndef preprocess(textstring):\n   stops =  set(stopwords.words('english'))\n   tokens = word_tokenize(textstring)\n   return [token.lower() for token in tokens if token.isalpha()\n          and token not in stops]\n\ndata_path = \"/PATH/booksummaries/booksummaries.txt\"\nsummaries = []\nfor line in open(data_path, encoding=\"utf-8\"):\n   temp = line.split(\"\\t\")\n   summaries.append(preprocess(temp[6]))\n\n# Create a dictionary representation of the documents.\ndictionary = Dictionary(summaries)\n# Filter infrequent or too frequent words.\ndictionary.filter_extremes(no_below=10, no_above=0.5)\ncorpus = [dictionary.doc2bow(summary) for summary in summaries]\n# Make a index to word dictionary.\ntemp = dictionary[0]  # This is only to \"load\" the dictionary.\nid2word = dictionary.id2token\n# Train the topic model\nmodel = LdaModel(corpus=corpus, id2word=id2word,iterations=400, num_topics=10)\ntop_topics = list(model.top_topics(corpus))\npprint(top_topics)"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::sumy_textrank_summary",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "sumy_textrank_summary",
+    "step": 45,
+    "page": 288,
+    "start_line": 4,
+    "end_line": 12,
+    "depends_on": [
+      "HtmlParser",
+      "Tokenizer",
+      "TextRankSummarizer",
+      "url"
+    ],
+    "description": "Tóm tắt trang Wikipedia bằng Sumy TextRank và in năm câu đầu; kết nối mạng và URL nguồn là điều kiện chạy.",
+    "text": "from sumy.parsers.html import HtmlParser\nfrom sumy.nlp.tokenizers import Tokenizer\nfrom sumy.summarizers.text_rank import TextRankSummarizer\n\nurl = \"https://en.wikipedia.org/wiki/Automatic_summarization\"\nparser = HtmlParser.from_url(url, Tokenizer(\"english\"))\nsummarizer = TextRankSummarizer()\nfor sentence in summarizer(parser.document, 5):\n    print(sentence)"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::gensim_text_summary",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "gensim_text_summary",
+    "step": 46,
+    "page": 288,
+    "start_line": 22,
+    "end_line": 24,
+    "depends_on": [
+      "summarize",
+      "text"
+    ],
+    "description": "Tóm tắt chuỗi văn bản bằng hàm summarize của Gensim; đầu vào text phải được thiết lập trước.",
+    "text": "from gensim.summarization import summarize\ntext = \"some text you want to summarize\"\nprint(summarize(text))"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::doc2vec_book_summaries",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "doc2vec_book_summaries",
+    "step": 47,
+    "page": 291,
+    "start_line": 10,
+    "end_line": 23,
+    "depends_on": [
+      "word_tokenize",
+      "Doc2Vec",
+      "TaggedDocument",
+      "data_path"
+    ],
+    "description": "Đọc book summaries, tạo TaggedDocument và khởi tạo Doc2Vec; đoạn trích dừng trước khi huấn luyện model.",
+    "text": "from nltk.tokenize import word_tokenize\nfrom gensim.models.doc2vec import Doc2Vec, TaggedDocument\n\n# Read the dataset’s README to understand the data format.\ndata_path = \"/DATASET_FOLDER_PATH/booksummaries.txt\"\nmydata = {} #titles-summaries dictionary object\nfor line in open(data_path, encoding=\"utf-8\"):\n    temp = line.split(\"\\t\")\n    mydata[temp[2]] = temp[6]\n\n# Prepare the data for doc2vec, build and save a doc2vec model.\nd2vtrain = [TaggedDocument((word_tokenize(mydata[t])), tags=[t])\n            for t in mydata.keys()]\nmodel = Doc2Vec(vector_size=50, alpha=0.025, min_count=10, dm =1, epochs=100)"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::azure_translation_request",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "azure_translation_request",
+    "step": 48,
+    "page": 294,
+    "start_line": 31,
+    "end_line": 43,
+    "depends_on": [
+      "os",
+      "requests",
+      "uuid",
+      "json",
+      "subscription_key",
+      "endpoint"
+    ],
+    "description": "Chuẩn bị yêu cầu HTTP cho Microsoft Translator v3; subscription key và endpoint là placeholder, đoạn trích dừng ở headers.",
+    "text": "import os, requests, uuid, json\n\nsubscription_key = \"XXXXX\"\nendpoint = \"YYYYY\"\npath = '/translate?api-version=3.0'\nparams = '&to=de' #From English to German (de)\nconstructed_url = endpoint + path + params\n\nheaders = {\n    'Ocp-Apim-Subscription-Key': subscription_key,\n    'Content-type': 'application/json',\n    'X-ClientTraceId': str(uuid.uuid4())\n}"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::wordcloud_tweets",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "wordcloud_tweets",
+    "step": 49,
+    "page": 315,
+    "start_line": 16,
+    "end_line": 29,
+    "depends_on": [
+      "WordCloud",
+      "nltk",
+      "twokenize",
+      "text_from_file",
+      "plt"
+    ],
+    "description": "Lọc stopword trong tweet rồi tạo và hiển thị word cloud; một số biến và hàm token hóa được khai báo ngoài đoạn trích.",
+    "text": "from wordcloud import WordCloud\ndocument_file_path = ‘./twitter_data.txt’\ntext_from_file = open(document_file_path).read()\n\nstop_words = set(nltk.corpus.stopwords.words('english'))\n\nword_tokens = twokenize(text_from_file)\nfiltered_sentence = [w for w in word_tokens if not w in stop_words]\nwl_space_split = \" \".join(filtered_sentence)\nmy_wordcloud = WordCloud().generate(wl_space_split)\n\nplt.imshow(my_wordcloud)\nplt.axis(\"off\")\nplt.show()"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::tweepy_trends_and_search",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "tweepy_trends_and_search",
+    "step": 50,
+    "page": [
+      317,
+      318
+    ],
+    "start_line": 16,
+    "end_line": 23,
+    "depends_on": [
+      "tweepy",
+      "json",
+      "CONSUMER_KEY",
+      "CONSUMER_SECRET",
+      "ACCESS_KEY",
+      "ACCESS_SECRET",
+      "auth",
+      "api"
+    ],
+    "description": "Xác thực Tweepy, lấy xu hướng thế giới/Canada và tìm tweet theo hashtag; đầu ra trích xuất có dòng mã bị ngắt hoặc lỗi định dạng.",
+    "text": "# (Tiếp nối phần Tweepy qua trang PDF 318.)\nimport tweepy, json\nCONSUMER_KEY = 'key'\nCONSUMER_SECRET = 'secret'\nACCESS_KEY = 'key'\nACCESS_SECRET = 'secret'\nauth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)\nauth.set_access_token(ACCESS_KEY, ACCESS_SECRET)\napi = tweepy.API(auth)\n# Where On Earth ID for the entire world is 1.\n# See https://dev.twitter.com/docs/api/1.1/get/trends/place and\n# http://developer.yahoo.com/geo/geoplanet/\nWORLD_WOE_ID = 1\nCANADA_WOE_ID = 23424775 # WOEID for Canada\nworld_trends = api.trends_place(_id=WORLD_WOE_ID)\ncanada_trends = api.trends_place(_id=CANADA_WOE_ID )\nworld_trends_set = set([trend['name'] for trend in world_trends[0]['trends']])\ncanada_trends_set = set([trend['name'] for trend in canada_trends[0]['trends']])\ncommon_trends = world_trends_set.intersection(us_trends_set)\ntrend_queries = [trend['query'] for trend in results[0]['trends']]\nfor trend_query in trend_queries:\n    print(api.search(q=trend_query))"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::textblob_sentiment",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "textblob_sentiment",
+    "step": 51,
+    "page": 320,
+    "start_line": 7,
+    "end_line": 12,
+    "depends_on": [
+      "TextBlob",
+      "tweets_text_collection"
+    ],
+    "description": "Phân tích và in sentiment cho từng tweet bằng TextBlob; collection phải được tạo ở phần trước.",
+    "text": "from textblob import TextBlob\nfor tweet_text in tweets_text_collection:\n    print(tweet_text)\n    analysis = TextBlob(tweet_text)\n    print(analysis.sentiment)"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::beautiful_soup_tweet_text",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "beautiful_soup_tweet_text",
+    "step": 52,
+    "page": 321,
+    "start_line": 6,
+    "end_line": 10,
+    "depends_on": [
+      "BeautifulSoup",
+      "markup"
+    ],
+    "description": "Loại markup HTML khỏi đoạn ví dụ bằng BeautifulSoup và gọi get_text; ví dụ không lưu kết quả trả về.",
+    "text": "from bs4 import BeautifulSoup\nmarkup = '<a href=\"http://nlp.com/\">\\nI love <i>nlp</i>\\n</a>'\nsoup = BeautifulSoup(markup)\nsoup.get_text()"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::tweet_url_normalization",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "function",
+    "symbol": "tweet_url_normalization",
+    "step": 53,
+    "page": 323,
+    "start_line": 9,
+    "end_line": 33,
+    "depends_on": [
+      "regex_or",
+      "PunctChars",
+      "Entity",
+      "optional",
+      "pos_lookahead",
+      "re"
+    ],
+    "description": "Nhận diện URL bằng biểu thức chính quy và thay bằng constant_url; helper regex và Entity cần được định nghĩa bên ngoài.",
+    "text": "def process_URLs(tweet_text):\n    '''\n    replace all URLs in the tweet text\n    '''\n    UrlStart1 = regex_or('https?://', r'www\\.')\n    CommonTLDs  = regex_or( 'com','co\\.uk','org','net','info','ca','biz',\n                           'info','edu','in','au')\n    UrlStart2 = r'[a-z0-9\\.-]+?' + r'\\.' + CommonTLDs +\n                pos_lookahead(r'[/ \\W\\b]')\n    # * not + for case of:  \"go to bla.com.\" -- don't want period\n    UrlBody = r'[^ \\t\\r\\n<>]*?'\n    UrlExtraCrapBeforeEnd = '%s+?' % regex_or(PunctChars, Entity)\n    UrlEnd = regex_or( r'\\.\\.+', r'[<>]', r'\\s', '$')\n    Url =      (optional(r'\\b') +\n          regex_or(UrlStart1, UrlStart2) +\n          UrlBody +\n    pos_lookahead( optional(UrlExtraCrapBeforeEnd) + UrlEnd))\n\n    Url_RE = re.compile(\"(%s)\" % Url, re.U|re.I)\n    tweet_text = re.sub(Url_RE, \" constant_url \", tweet_text)\n\n    # fix to handle unicodes in URL\n    URL_regex2 = r'\\b(htt)[p\\:\\/]*([\\\\x\\\\u][a-z0-9]*)*'\n    tweet_text = re.sub(URL_regex2, \" constant_url \", tweet_text)\n    return tweet_text"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::prune_repeated_characters",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "function",
+    "symbol": "prune_repeated_characters",
+    "step": 54,
+    "page": 323,
+    "start_line": 43,
+    "end_line": 49,
+    "depends_on": [
+      "re"
+    ],
+    "description": "Rút gọn chuỗi ký tự lặp liên tiếp bằng regex; phần khớp tối thiểu giữ lại hai bản sao của ký tự.",
+    "text": "def prune_multple_consecutive_same_char(tweet_text):\n    '''\n    yesssssssss  is converted to yes\n    ssssssssssh is converted to ssh\n    '''\n          tweet_text = re.sub(r'(.)\\1+', r'\\1\\1', tweet_text)\n          return tweet_text"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::lexnlp_contract_extraction",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "lexnlp_contract_extraction",
+    "step": 55,
+    "page": 394,
+    "start_line": 18,
+    "end_line": 33,
+    "depends_on": [
+      "lexnlp",
+      "pd",
+      "text"
+    ],
+    "description": "Trích xuất acts và definitions từ hợp đồng bằng LexNLP rồi dựng DataFrame; text và pandas alias cần được chuẩn bị trước.",
+    "text": "import lexnlp.extract.en.acts\nimport lexnlp.extract.en.definitions\n\nprint(\"List of acts in the document\")\ndata_contract = list(lexnlp.extract.en.acts.get_acts(text))\ndf = pd.DataFrame(data=data_contract,columns=data_contract[0].keys())\ndf['Act_annotations'] = list(lexnlp.extract.en.acts.get_acts_annotations(text))\n\nprint(\"Different ACT definitions in the contract\")\ndata_acts = list(lexnlp.extract.en.definitions.get_definitions(text))\ndf = pd.DataFrame(data=data_acts,columns=[\"Acts\"])\ndf.head(20)"
+  },
+  {
+    "id": "practical-natural-language-processing.pdf::automl_digits_classifier",
+    "file": "Practical Natural Language Processing.pdf",
+    "language": "python",
+    "chunk_type": "script",
+    "symbol": "automl_digits_classifier",
+    "step": 56,
+    "page": 416,
+    "start_line": 1,
+    "end_line": 11,
+    "depends_on": [
+      "autosklearn",
+      "sklearn"
+    ],
+    "description": "Huấn luyện AutoSklearnClassifier trên digits dataset và tính độ chính xác; kết quả tìm kiếm cấu hình phía sau không thuộc mã thực thi.",
+    "text": "import autosklearn.classification\nimport sklearn.model_selection\nimport sklearn.datasets\nimport sklearn.metrics\nX, y = sklearn.datasets.load_digits(return_X_y=True)\nX_train, X_test, y_train, y_test = \\\n      sklearn.model_selection.train_test_split(X, y, random_state=1)\nautoml = autosklearn.classification.AutoSklearnClassifier()\nautoml.fit(X_train, y_train)\ny_hat = automl.predict(X_test)\nprint(\"Accuracy\", sklearn.metrics.accuracy_score(y_test, y_hat))"
+  }
+]
